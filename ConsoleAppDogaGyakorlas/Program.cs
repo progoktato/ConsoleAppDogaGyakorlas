@@ -189,6 +189,10 @@ namespace ConsoleAppDogaGyakorlas
             //static int OsszegRekurziv(List<int> eredmenyek)
 
             List<int> muveletekEredmenye = new List<int>();
+            foreach (Muvelet muv in muveletek)
+            {
+                muveletekEredmenye.Add(muv.Eredmeny);
+            }
             Console.WriteLine($"5. feladat: {OsszegRekurziv(muveletekEredmenye)}");
 
             // * * * * *  * * * * *  * * * * *  * * * * *  * * * * *  * * * * *  * * * * *  * * * * *  * * * * *  * * * * * 
@@ -235,11 +239,11 @@ namespace ConsoleAppDogaGyakorlas
                     sr.Close();
                     fileLetezik = true;
                 }
-                catch (FileNotFoundException hiba)
+                catch (FileNotFoundException)
                 {
                     Console.WriteLine("Nem létezik a megadott fájl!");
                 }
-                catch (IOException hiba)
+                catch (IOException)
                 {
                     Console.WriteLine("Hiba történt a fájl megnyitásakor!");
                 }
@@ -263,7 +267,6 @@ namespace ConsoleAppDogaGyakorlas
             int elsoEredmeny = eredmenyek[0];  // Az első eredményt eltároljuk egy változóban, hogy később hozzáadhassuk a rekurzív hívás eredményéhez.
             eredmenyek.RemoveAt(0); // Az első eredményt eltávolítjuk a listából, hogy a következő rekurzív hívásban már csak a maradék eredmények legyenek benne. Ez biztosítja, hogy a rekurzív hívások során fokozatosan csökkenjen a lista mérete, amíg el nem érjük a bázis esetet.
             return elsoEredmeny + OsszegRekurziv(eredmenyek);
-        }
         }
 
 
@@ -297,8 +300,10 @@ namespace ConsoleAppDogaGyakorlas
             {
                 for (int i = 0; i < sorokSzama; i++)
                 {
-                    Muvelet muv = new Muvelet(rnd.Next(), operatorok[rnd.Next(5)], rnd.Next());
-                    sw.WriteLine($"{muv.Op1} {muv.MuveletiJel} {muv.Op2}");
+                    int opA = rnd.Next();
+                    int opB = rnd.Next();
+                    char opJel = operatorok[rnd.Next(5)];
+                    sw.WriteLine($"{opA} {opJel} {opB}");
                 }
             }
         }
