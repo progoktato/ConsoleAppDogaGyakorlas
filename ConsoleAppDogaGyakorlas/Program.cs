@@ -296,6 +296,8 @@ namespace ConsoleAppDogaGyakorlas
             Random rnd = new();
             List<char> operatorok = new() { '+', '-', '*', '/', '%' };
 
+            // string muveletek = "+-*/%"; Ezzel is lehetne
+
             using (StreamWriter sw = new StreamWriter(fajlnev))
             {
                 for (int i = 0; i < sorokSzama; i++)
@@ -303,6 +305,10 @@ namespace ConsoleAppDogaGyakorlas
                     int opA = rnd.Next();
                     int opB = rnd.Next();
                     char opJel = operatorok[rnd.Next(5)];
+                    if ((opJel == '/' || opJel == '%') && opB == 0)
+                    {
+                        opB++;
+                    }
                     sw.WriteLine($"{opA} {opJel} {opB}");
                 }
             }
