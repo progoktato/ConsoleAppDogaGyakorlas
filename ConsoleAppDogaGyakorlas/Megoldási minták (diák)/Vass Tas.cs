@@ -29,7 +29,7 @@ namespace Feladat
             }
             return ertek;
         }
-        static void Main(string[] args)
+        static void VassTas(string[] args)
         {
             //1. feladat
             List<string> muveletekSorai = new List<string>();
